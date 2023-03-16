@@ -6,8 +6,6 @@ import gosolar from '../../asset/image/gosolar.png'
 
 import { useNavigation } from '@react-navigation/native';
 
-import Login from "../component/Login";
-
 const CreateAccount = (props) => {
 
     const navigation = useNavigation();
