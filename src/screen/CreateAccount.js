@@ -5,12 +5,7 @@ import Create from "../component/Create";
 import gosolar from '../../asset/image/gosolar.png'
 import { useNavigation } from '@react-navigation/native';
 
-
-
 const CreateAccount = (props) => {
-
-
-    
 
     const navigation = useNavigation();
     const { route } = props;
