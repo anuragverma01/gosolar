@@ -3,7 +3,6 @@ import { Text, Button, View, StyleSheet, TouchableOpacity, Image } from "react-n
 import { SafeAreaView } from "react-native-safe-area-context";
 import Create from "../component/Create";
 import gosolar from '../../asset/image/gosolar.png'
-
 import { useNavigation } from '@react-navigation/native';
 
 const CreateAccount = (props) => {
