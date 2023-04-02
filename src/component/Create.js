@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,TextInput } from 'react-native';
+import {  } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // import {Icon} from 'react-native-vector-icons';
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -33,7 +34,7 @@ const Create = ({
                     style={{ fontSize: 15, flex: 0.75, left: 20}}
                     placeholder={placename}
                     placeholderTextColor={placeholdercolor}
-                    secureTextEntry={hidepassword}
+                   secureTextEntry={hidepassword}
                     
                 />
 
