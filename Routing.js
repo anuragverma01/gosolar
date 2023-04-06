@@ -6,6 +6,9 @@ import CreateAccount from "./src/screen/CreateAccount";
 import Test from "./src/component/CreateScreenDialog";
 import Bottom from "./src/screen/Bottom";
 import Show from "./Test/Show";
+import LoginTestScr from "./TestLogin/LoginTestSrc";
+import CreateTestSrc from "./TestLogin/CreateTestSrc";
+import { UserRegistration } from "./TestAuth/UserRegistration";
  
 
 
@@ -14,7 +17,7 @@ const Stack = createNativeStackNavigator();
 export default function Routing() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="LoginTest">
+            <Stack.Navigator initialRouteName="Userreg">
 
                 <Stack.Screen name='LoginScr' component={LoginScreen} options={{ headerShown: false, }} />
                 <Stack.Screen name='CreateScr' component={CreateAccount} options={{ headerShown: false, }} />
@@ -22,6 +25,8 @@ export default function Routing() {
                 <Stack.Screen name='BottomScr' component={Bottom} options={{ headerShown: false, }} />
                 <Stack.Screen name='Show' component={Show} options={{ headerShown: false, }} />
                 <Stack.Screen name='LoginTest' component={LoginTestScr} options={{ headerShown: false, }} />
+                <Stack.Screen name='CreateTest' component={CreateTestSrc} options={{ headerShown: false, }} />
+                <Stack.Screen name='Userreg' component={UserRegistration} options={{ headerShown: false, }} />
 
             </Stack.Navigator>
         </NavigationContainer>
