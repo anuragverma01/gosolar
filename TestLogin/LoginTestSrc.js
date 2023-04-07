@@ -18,9 +18,9 @@ const LoginTestScr = () => {
     // Note that these values come from state variables that we've declared before
     const usernameValue = username;
     const passwordValue = password;
-    
+
     console.log('username', username, password);
-  
+
     return await Parse.User.logIn(usernameValue, passwordValue)
       .then(async loggedInUser => {
         console.log('loggedInUser', loggedInUser.get('username'));
@@ -29,9 +29,8 @@ const LoginTestScr = () => {
         // To verify that this is in fact the current user, currentAsync can be used
         const currentUser = await Parse.User.currentAsync();
         console.log(loggedInUser === currentUser);
-        console.log('currentUser', currentUser);
-        navigation.navigate('BottomScr');
-        // navigation.dispatch(StackActions.popToTop());
+        console.log('users', currentUser);
+        navigation.replace('BottomScr');
         return true;
       })
       .catch(error => {

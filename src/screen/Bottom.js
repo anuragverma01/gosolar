@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 import Parent from '../../Test/Parent';
+import { UserLogOut } from '../../TestAuth/UserLogout';
 
 // const MusicRoute = () => <Login />;
 
@@ -22,7 +23,7 @@ const Bottom = () => {
 
     const renderScene = BottomNavigation.SceneMap({
         home: Parent,
-        like: likeRoute,
+        like: UserLogOut,
         cart: likeRoute,
         // user: accountRoute,
     });
