@@ -4,7 +4,7 @@ import { Button, Dialog, Portal, Text } from 'react-native-paper';
 
 const CreateScreenDialog = (props) => {
   const { visible, hideDialog } = props
-  console.log('CreateScrDial', visible)
+  // console.log('CreateScrDial', visible)
   return (
 
 

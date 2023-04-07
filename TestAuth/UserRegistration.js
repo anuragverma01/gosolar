@@ -2,9 +2,11 @@ import React, { FC, ReactElement, useState } from "react";
 import { Alert, Button, StyleSheet, TextInput } from "react-native";
 import Parse from "parse/react-native";
 
+
 export const UserRegistration = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
 
   const doUserRegistration = async function () {
     // Note that these values come from state variables that we've declared before
@@ -17,7 +19,9 @@ export const UserRegistration = () => {
         Alert.alert(
           "Success!",
           `User ${createdUser.get("username")} was successfully created!`
+         
         );
+       
         return true;
       })
       .catch((error) => {

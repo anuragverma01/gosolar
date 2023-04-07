@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator();
 export default function Routing() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Userreg">
+            <Stack.Navigator initialRouteName="LoginTest">
 
                 <Stack.Screen name='LoginScr' component={LoginScreen} options={{ headerShown: false, }} />
                 <Stack.Screen name='CreateScr' component={CreateAccount} options={{ headerShown: false, }} />
@@ -27,7 +27,7 @@ export default function Routing() {
                 <Stack.Screen name='LoginTest' component={LoginTestScr} options={{ headerShown: false, }} />
                 <Stack.Screen name='CreateTest' component={CreateTestSrc} options={{ headerShown: false, }} />
                 <Stack.Screen name='Userreg' component={UserRegistration} options={{ headerShown: false, }} />
-
+               
             </Stack.Navigator>
         </NavigationContainer>
     )

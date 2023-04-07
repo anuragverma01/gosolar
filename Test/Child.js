@@ -15,8 +15,8 @@ const Child = () => {
   };
   const hideModal = () => setVisible(false);
 
-  console.log(ActivityIndicator)
-  console.log(visible, 'pressed')
+  // console.log(ActivityIndicator)
+  // console.log(visible, 'pressed')
   // console.log(visible,'pressed')
 
   const [data, setData] = useState([]);

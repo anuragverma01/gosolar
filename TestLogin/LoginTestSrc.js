@@ -1,16 +1,51 @@
 import React from 'react';
 import {Text, TextInput, Button} from 'react-native-paper';
-import {View, Image, Pressable} from 'react-native';
+import {View, Image, Pressable, Alert} from 'react-native';
+import {useState} from 'react';
 import gosolar from '../asset/image/gosolar.png';
 import LoginTestComp from './LoginTestComp';
 import {Provider} from 'react-native-paper';
 import CreateScreenDialog from '../src/component/CreateScreenDialog';
-
+import Parse from 'parse/react-native';
+import {useNavigation} from '@react-navigation/native';
+import {StackActions} from '@react-navigation/native';
 const LoginTestScr = () => {
+  const navigation = useNavigation();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const doUserLogIn = async function () {
+    // Note that these values come from state variables that we've declared before
+    const usernameValue = username;
+    const passwordValue = password;
+    
+    console.log('username', username, password);
+  
+    return await Parse.User.logIn(usernameValue, passwordValue)
+      .then(async loggedInUser => {
+        console.log('loggedInUser', loggedInUser.get('username'));
+        // logIn returns the corresponding ParseUser object
+
+        // To verify that this is in fact the current user, currentAsync can be used
+        const currentUser = await Parse.User.currentAsync();
+        console.log(loggedInUser === currentUser);
+        console.log('currentUser', currentUser);
+        navigation.navigate('BottomScr');
+        // navigation.dispatch(StackActions.popToTop());
+        return true;
+      })
+      .catch(error => {
+        // Error can be caused by wrong parameters or lack of Internet connection
+        console.log('error', error);
+        Alert.alert('Error!', error.message);
+        return false;
+      });
+  };
+
   const [visible, setVisible] = React.useState(false);
   const showDialog = () => setVisible(true);
   const hideDialog = () => setVisible(false);
-  console.log('Visile Pressed', visible);
+  // console.log('Visile Pressed', visible);
   return (
     <Provider>
       <View style={{backgroundColor: '#dbdad5', flex: 1}}>
@@ -40,12 +75,16 @@ const LoginTestScr = () => {
               label="Email Address"
               label2="Email Address"
               iconname="person-circle-outline"
+              value={username}
+              onChangeText={text => setUsername(text)}
             />
 
             <LoginTestComp
               placename="Your Password"
               label="Password"
               label2="Your Password"
+              value={password}
+              onChangeText={text => setPassword(text)}
               password
             />
           </View>
@@ -61,7 +100,7 @@ const LoginTestScr = () => {
                 marginTop: 40,
                 marginBottom: -20,
               }}
-              onPress={() => console.log('press')}>
+              onPress={() => doUserLogIn()}>
               <Text
                 style={{
                   textAlign: 'center',
