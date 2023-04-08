@@ -22,12 +22,12 @@ export const UserLogOut = () => {
         // To verify that current user is now empty, currentAsync can be used
         const currentUser = await Parse.User.currentAsync();
         if (currentUser === null) {
-          Alert.alert('Success!', 'No user is logged in anymore!');
+          // Alert.alert('Success!', 'No user is logged in anymore!');
         }
         console.log('current', currentUser);
         // Navigation dispatch calls a navigation action, and popToTop will take
         // the user back to the very first screen of the stack
-        navigation.dispatch(StackActions.popToTop());
+        navigation.replace('Splash');
         return true;
       })
       .catch(error => {

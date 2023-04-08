@@ -62,7 +62,7 @@ const LoginTestScr = () => {
                 fontFamily: 'Laila-Bold',
                 color: '#000000',
                 bottom: 40,
-                fontWeight: 'bold',
+                // fontWeight: 'bold',
               }}>
               LOGIN
             </Text>
@@ -147,7 +147,7 @@ const LoginTestScr = () => {
 
         <View style={{flexDirection: 'row', alignSelf: 'center'}}>
           <Text style={{fontSize: 14}}>Don't have an account?</Text>
-          <Text
+          <Text onPress={()=> navigation.replace('CreateTest')}
             style={{
               color: '#000000',
               fontWeight: 'bold',

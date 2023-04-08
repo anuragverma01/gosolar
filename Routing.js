@@ -18,12 +18,12 @@ const Stack = createNativeStackNavigator();
 export default function Routing() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Splash">
+            <Stack.Navigator initialRouteName="CreateTest">
 
                 <Stack.Screen name='LoginScr' component={LoginScreen} options={{ headerShown: false, }} />
                 <Stack.Screen name='CreateScr' component={CreateAccount} options={{ headerShown: false, }} />
                 <Stack.Screen name='TestScr' component={Test} options={{ headerShown: false, }} />
-                <Stack.Screen name='BottomScr' component={Bottom} options={{ headerShown: false, }} />
+                <Stack.Screen name='BottomScr' component={Bottom} options={{ headerShown: true, }} />
                 <Stack.Screen name='Show' component={Show} options={{ headerShown: false, }} />
                 <Stack.Screen name='LoginTest' component={LoginTestScr} options={{ headerShown: false, }} />
                 <Stack.Screen name='CreateTest' component={CreateTestSrc} options={{ headerShown: false, }} />

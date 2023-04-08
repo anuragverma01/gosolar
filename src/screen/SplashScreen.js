@@ -7,7 +7,7 @@ import React, {FC, ReactElement, useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet, Alert} from 'react-native';
 import Parse from 'parse/react-native';
 import {useNavigation} from '@react-navigation/native';
-
+import gosolar from '../../asset/image/gosolar.png';
 const SplashScreen = () => {
   const [align, setAlign] = useState('center');
   const [alignsecond, setAlignsecond] = useState(false);
@@ -41,10 +41,10 @@ const SplashScreen = () => {
   return (
     <View style={[styles.container, {justifyContent: align}]}>
       <Image
-        source={{
-          uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/react_logo.png',
-        }}
-        style={{width: 100, height: 100}}
+        source={
+          gosolar
+        }
+        style={{flex:1}}
       />
       {!alignsecond ? null : navigation.replace('LoginTest')}
     </View>
@@ -59,5 +59,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginHorizontal: 40,
+   
   },
 });
