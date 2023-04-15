@@ -15,6 +15,7 @@ import {Button} from 'react-native-paper';
 
 export const UserLogOut = () => {
   const navigation = useNavigation();
+  
 
   const doUserLogOut = async function () {
     return await Parse.User.logOut()
@@ -34,12 +35,16 @@ export const UserLogOut = () => {
         Alert.alert('Error!', error.message);
         return false;
       });
+
+
+
   };
+
 
   return (
     <View>
-      <Button icon="camera" mode="contained" onPress={() => doUserLogOut()}>
-        Press me
+      <Button icon="refresh" mode="contained" onPress={() =>doUserLogOut()}>
+        Logout
       </Button>
      
     </View>

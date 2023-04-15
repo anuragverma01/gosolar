@@ -10,12 +10,14 @@ const CreateTestComp = ({
   iconname,
   password,
   label2,
+  onChangeText
 }) => {
   const [hidepassword, setHidePassword] = useState(password);
   return (
     <View style={{marginHorizontal: 20, marginTop: 15}}>
       {/* <Text style={{fontSize: 15, color: '#000000'}}>{label}</Text> */}
       <TextInput
+       onChangeText={onChangeText}
         mode="outlined"
         placeholder={placename}
         label={label2}

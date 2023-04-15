@@ -1,11 +1,32 @@
 import React, {useState} from 'react';
-import {TextInput, Button} from 'react-native-paper';
 import {View, Image, Pressable, Text} from 'react-native';
 import gosolar from '../asset/image/gosolar.png';
 import CreateTestComp from './CreateTestComp';
 import {useNavigation} from '@react-navigation/native';
+import Parse from 'parse/react-native';
 const CreateTestSrc = () => {
   const navigation = useNavigation();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const doUserRegistration = async function () {
+    // Note that these values come from state variables that we've declared before
+    const usernameValue = username;
+    const passwordValue = password;
+    // Since the signUp method returns a Promise, we need to call it using await
+    return await Parse.User.signUp(usernameValue, passwordValue)
+      .then(createdUser => {
+        // Parse.User.signUp returns the already created ParseUser object if successful
+        console.log('user', createdUser);
+        navigation.replace('BottomScr');
+        return true;
+      })
+      .catch(error => {
+        // signUp can fail if any parameter is blank or failed an uniqueness check on the server
+        Alert.alert('Error!', error.message);
+        return false;
+      });
+  };
 
   return (
     <View style={{backgroundColor: '#dbdad5', flex: 1}}>
@@ -33,12 +54,17 @@ const CreateTestSrc = () => {
             label="Email Address"
             label2="Email Address"
             iconname="person-circle-outline"
+            value={username}
+            onChangeText={text => setUsername(text)}
+            autoCapitalize={'none'}
           />
 
           <CreateTestComp
             placename="Your Password"
             label="Password"
             label2="Your Password"
+            value={password}
+            onChangeText={text => setPassword(text)}
             password
           />
         </View>
@@ -54,7 +80,7 @@ const CreateTestSrc = () => {
               marginTop: 40,
               marginBottom: -20,
             }}
-            onPress={() => navigation.navigate('BottomScr')}>
+            onPress={() => doUserRegistration()}>
             <Text
               style={{
                 textAlign: 'center',
@@ -79,11 +105,12 @@ const CreateTestSrc = () => {
         </View>
       </View> */}
 
-      <View style={{flexDirection: 'row', alignSelf: 'center',marginVertical:40}}>
+      <View
+        style={{flexDirection: 'row', alignSelf: 'center', marginVertical: 40}}>
         <Text style={{fontSize: 14}}> Already have an account?</Text>
-         
+
         <Text
-        onPress={()=> navigation.navigate('LoginTest')}
+          onPress={() => navigation.navigate('LoginTest')}
           style={{
             color: '#000000',
             fontWeight: 'bold',

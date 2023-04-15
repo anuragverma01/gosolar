@@ -2,6 +2,8 @@ import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 import Parent from '../../Test/Parent';
 import { UserLogOut } from '../../TestAuth/UserLogout';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // const MusicRoute = () => <Login />;
 
@@ -30,12 +32,18 @@ const Bottom = () => {
 
     return (
         <BottomNavigation
-
+        sceneAnimationEnabled='true'
+        sceneAnimationEasin='EasingFunction'
+            sceneAnimationType='shifting'
             navigationState={{ index, routes }}
             onIndexChange={setIndex}
             renderScene={renderScene}
         />
+
+        
     );
 };
+
+
 
 export default Bottom;

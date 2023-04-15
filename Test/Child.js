@@ -20,7 +20,7 @@ const Child = () => {
   // console.log(visible,'pressed')
 
   const [data, setData] = useState([]);
-  console.log(data)
+  // console.log(data)
 
   const getdata = async () => {
 
@@ -47,10 +47,10 @@ const Child = () => {
 
   return (
 
-    <View style={{ top: 110, paddingBottom: 130 }}>
+    <View style={{ marginVertical:0  }}>
 
       <View style={{ flexDirection: 'row', alignSelf: 'center', position: 'absolute' }}>
-        <Chip style={{ height: 40, width: 100 }}
+        {/* <Chip style={{ height: 40, width: 100 }}
           icon={select ? "check-bold" : "laptop"}
           selected={select}
           onPress={() => setSelect(!select)}
@@ -69,19 +69,19 @@ const Child = () => {
           selected={select}
           onPress={() => setSelect(!select)}
           mode='outlined'>
-          Microsoft  </Chip>
+          Microsoft  </Chip> */}
 
 
 
       </View>
 
       {isLoading ? (
-        <ActivityIndicator animating={true} color='#f00' size='large'  />
+        <ActivityIndicator animating={true} color='#f00'/>
       ) : (
 
 
         <FlatList
-          style={{ margin: 10, top: 40 }}
+          style={{ margin: 10}}
           numColumns={2}
           data={data}
           keyExtractor={({ id }) => id}
