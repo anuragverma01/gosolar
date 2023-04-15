@@ -1,10 +1,11 @@
-import {Text, Touchable, View} from 'react-native';
+import {StyleSheet, Text, TextInput, Touchable, View} from 'react-native';
 import {Searchbar, Button} from 'react-native-paper';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
 import Child from './Child';
 import SideKey from './SideKey';
 import Parse from 'parse/react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {Icon} from 'react-native-elements';
 
 const Parent = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -34,7 +35,7 @@ const Parent = () => {
   return (
     <View style={{backgroundColor: '#ffff'}}>
       <ScrollView>
-        <View style={{marginTop: 30}}>
+        <View style={{marginTop: 10}}>
           <SideKey />
         </View>
 
@@ -50,22 +51,40 @@ const Parent = () => {
           </Text>
         </View> */}
 
-        {/* <Searchbar
+        <Searchbar
+        placeholder='Search'
+        placeholderTextColor='#96948f'
           style={{
             width: 300,
             height: 50,
-            backgroundColor: '#f0f1f2',
-            marginHorizontal: 30,
+            backgroundColor: 'transparent',
+            marginHorizontal: 40,
+            marginVertical:10,
+            borderWidth:0.5,
+            borderColor:'#96948f'
+            
           }}
-          placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
-        /> */}
+        />
 
+       
         <Child />
       </ScrollView>
     </View>
   );
 };
+
+const style = StyleSheet.create({
+  // Search: {
+  //   maxWidth: 250,
+  //   maxHeight: 45,
+  //   borderRadius: 6,
+  //   borderWidth: 1,
+  //   marginHorizontal: 30,
+  //   paddingHorizontal: 30,
+  //   marginVertical: 10,
+  // },
+});
 
 export default Parent;

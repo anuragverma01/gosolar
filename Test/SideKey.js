@@ -12,14 +12,14 @@ const SideKey = () => {
   return (
     <SafeAreaView> 
       
-      <View style={{flexDirection: 'row',justifyContent:'space-between',backgroundColor:'#4542f5'}}>
+      <View style={{flexDirection: 'row'}}>
         
         <TouchableOpacity onPress={()=> navigation.openDrawer() } >
-          <Image style={{marginVertical:10,marginHorizontal:25,width:40 ,height:20,backgroundColor:'#f00'}} source={Side} />
+          <Image style={{marginVertical:10,marginHorizontal:25,width:40 ,height:20}} source={Side} />
         </TouchableOpacity>
         
         <TouchableOpacity>
-      <Icon name='shopping-cart' style={{width:40 ,height:40,top:10,right:20,backgroundColor:'#f00'}} />
+      <Icon name='shopping-cart' style={{width:40 ,height:40,top:10,marginHorizontal:240}} />
         {/* <Avatar.Image size={60} style={{marginStart:220}} source={require('../asset/image/face.png')}/> */}
         </TouchableOpacity>
 
