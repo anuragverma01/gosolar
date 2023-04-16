@@ -10,9 +10,11 @@ import LoginTestScr from "./TestLogin/LoginTestSrc";
 import CreateTestSrc from "./TestLogin/CreateTestSrc";
 import { UserRegistration } from "./TestAuth/UserRegistration";
 import SplashScreen from "./src/screen/SplashScreen";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { DrawerItem, createDrawerNavigator } from "@react-navigation/drawer";
 import CustomDrawer from "./TestDrawer/CustomDrawer";
 import Arit from "./TestDrawer/Arit";
+import Icon from 'react-native-vector-icons/Ionicons';
+import { IconComponentContext } from "@react-native-material/core";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -26,11 +28,19 @@ const DrawerRoutes =()=>{
             drawerType : 'slide'
             },
             }}>
-            <Drawer.Screen name="Home" component={Bottom} />
-            <Drawer.Screen name="Profile" component={Arit} />
-            <Drawer.Screen name="Favourate" component={Arit} />
-            <Drawer.Screen name="Cart" component={Arit} />
-            <Drawer.Screen name="About" component={Arit} />
+            <Drawer.Screen name="Home" component={Bottom} options={{drawerIcon:()=>(
+                <Icon name="home-outline" size={25} color='#1449f7' />
+            )}} /> 
+            <Drawer.Screen name="Profile" component={Arit}options={{drawerIcon:()=>(
+                <Icon name="person-outline" size={25}color='#1449f7'  />
+            )}} /> 
+            <Drawer.Screen name="Favourate" component={Arit}options={{drawerIcon:()=>(
+                <Icon name="heart-outline" size={25}color='#f00'  />
+            )}} /> 
+            <Drawer.Screen name="Cart" component={Arit}options={{drawerIcon:()=>(
+                <Icon name="cart-outline" size={25}color='#000000'  />
+            )}} /> 
+           
           </Drawer.Navigator>
     )
 }

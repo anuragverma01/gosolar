@@ -10,7 +10,7 @@ const Item = () => {
 
   const getMovies = async () => {
     try {
-      const response = await fetch('https://dummyjson.com/products');
+      const response = await fetch('https://dummyjson.com/products/');
       const json = await response.json();
 
       setData(json.products);

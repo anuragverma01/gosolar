@@ -20,7 +20,7 @@ const Child = () => {
   // console.log(visible,'pressed')
 
   const [data, setData] = useState([]);
-  // console.log(data)
+  console.log(data)
 
   const getdata = async () => {
 
