@@ -25,15 +25,17 @@ const Bottom = () => {
 
     const renderScene = BottomNavigation.SceneMap({
         home: Parent,
-        like: UserLogOut,
+        like: likeRoute,
         cart: likeRoute,
         // user: accountRoute,
     });
 
     return (
-        <BottomNavigation
+        <BottomNavigation 
+        
         sceneAnimationEnabled='true'
         sceneAnimationEasin='EasingFunction'
+        
             sceneAnimationType='shifting'
             navigationState={{ index, routes }}
             onIndexChange={setIndex}

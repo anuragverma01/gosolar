@@ -23,9 +23,10 @@ const DrawerRoutes =()=>{
     return(
         <Drawer.Navigator drawerContent={props => <CustomDrawer {...props}/>} useLegacyImplementation={false}  screenOptions={{
             headerShown:false,
+            // drawerActiveBackgroundColor:"#5366e0",
             drawerStyle: {
             backgroundColor: "#EFF5FC",
-            drawerType : 'slide'
+            drawerType : 'slide',
             },
             }}>
             <Drawer.Screen name="Home" component={Bottom} options={{drawerIcon:()=>(
