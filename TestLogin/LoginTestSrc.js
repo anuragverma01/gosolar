@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, TextInput, Button} from 'react-native-paper';
-import {View, Image, Pressable, Alert} from 'react-native';
+import {View, Image, Pressable, Alert, ActivityIndicator} from 'react-native';
 import {useState} from 'react';
 import gosolar from '../asset/image/gosolar.png';
 import LoginTestComp from './LoginTestComp';
@@ -13,13 +13,15 @@ const LoginTestScr = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const doUserLogIn = async function () {
     // Note that these values come from state variables that we've declared before
     const usernameValue = username;
     const passwordValue = password;
-
-    console.log('username', username, password);
+    setIsLoading(true);
+    // return 0;
+    // console.log('username', username, password);
 
     return await Parse.User.logIn(usernameValue, passwordValue)
       .then(async loggedInUser => {
@@ -30,12 +32,15 @@ const LoginTestScr = () => {
         const currentUser = await Parse.User.currentAsync();
         console.log(loggedInUser === currentUser);
         console.log('users', currentUser);
+        setIsLoading(false);
         navigation.replace('BottomScr');
+        
         return true;
       })
       .catch(error => {
         // Error can be caused by wrong parameters or lack of Internet connection
         console.log('error', error);
+        setIsLoading(false);
         Alert.alert('Error!', error.message);
         return false;
       });
@@ -99,15 +104,21 @@ const LoginTestScr = () => {
                 marginTop: 40,
                 marginBottom: -20,
               }}
-              onPress={() => doUserLogIn()}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  color: '#fff',
-                  fontSize: 16,
-                }}>
-                LOGIN
-              </Text>
+              onPress={() => doUserLogIn()}
+              // title={isLoading ? 'Loading...' : 'Press me'}
+              disabled={isLoading}>
+              {isLoading ? (
+                <ActivityIndicator size="small" color="white" />
+              ) : (
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    color: '#fff',
+                    fontSize: 16,
+                  }}>
+                  LOGIN
+                </Text>
+              )}
             </Pressable>
           </View>
         </View>
@@ -147,7 +158,8 @@ const LoginTestScr = () => {
 
         <View style={{flexDirection: 'row', alignSelf: 'center'}}>
           <Text style={{fontSize: 14}}>Don't have an account?</Text>
-          <Text onPress={()=> navigation.replace('CreateTest')}
+          <Text
+            onPress={() => navigation.replace('CreateTest')}
             style={{
               color: '#000000',
               fontWeight: 'bold',
