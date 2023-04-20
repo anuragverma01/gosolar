@@ -1,5 +1,5 @@
 import React, {FC, ReactElement, useEffect, useState} from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, Text, View, StatusBar, SafeAreaView} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -10,15 +10,13 @@ import Parse from 'parse/react-native';
 import {Icon} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
-import Animated from 'react-native-reanimated';
+
+
+
+
+
 const CustomDrawer = props => {
   const navigation = useNavigation();
-
-//   const progress = useDrawerProgress();
-//   const translateX = Animated.interpolateNode(progress, {
-//     inputRange: [0, 1],
-//     outputRange: [-100, 0],
-//   });
 
   const doUserLogOut = async function () {
     return await Parse.User.logOut()
@@ -60,11 +58,15 @@ const CustomDrawer = props => {
     getCurrentUser();
   }, [username]);
 
+
   return (
+    <SafeAreaView style={{flex: 1}} >
     <View style={{flex: 1}}>
       <DrawerContentScrollView
         {...props}
         contentContainerStyle={{backgroundColor: '#ffff', flex: 1}}>
+        {/* <StatusBar barStyle="dark-content" backgroundColor="#ecf0f1" /> */}
+
         <View style={{flexDirection: 'row'}}>
           <Image
             source={face}
@@ -76,12 +78,14 @@ const CustomDrawer = props => {
               marginHorizontal: 20,
             }}
           />
+
           <Text style={{marginVertical: 50, fontSize: 30}}> Hi {username}</Text>
         </View>
         {/* <Animated.View style={{transform: [{translateX}]}}> */}
-          <DrawerItemList {...props} />
+        <DrawerItemList {...props} />
         {/* </Animated.View> */}
       </DrawerContentScrollView>
+
 
       <View style={{backgroundColor: '#ffff'}}>
         <TouchableOpacity
@@ -92,6 +96,7 @@ const CustomDrawer = props => {
         </TouchableOpacity>
       </View>
     </View>
+    </SafeAreaView>
   );
 };
 export default CustomDrawer;

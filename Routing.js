@@ -15,7 +15,7 @@ import CustomDrawer from "./TestDrawer/CustomDrawer";
 import Arit from "./TestDrawer/Arit";
 import Icon from 'react-native-vector-icons/Ionicons';
 import { IconComponentContext } from "@react-native-material/core";
-import ApiTest from "./Test/ApiTest";
+import PaginationDotsExample from "./Test/Dot";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -66,7 +66,7 @@ export default function Routing() {
                 <Stack.Screen name='CreateTest' component={CreateTestSrc} options={{ headerShown: false, }} />
                 <Stack.Screen name='Userreg' component={UserRegistration} options={{ headerShown: false, }} />
                 <Stack.Screen name='Splash' component={SplashScreen} options={{ headerShown: false, }} />
-                <Stack.Screen name='APitest' component={ApiTest} options={{ headerShown: false, }} />
+                <Stack.Screen name='Dot' component={PaginationDotsExample} options={{ headerShown: false, }} />
                 
             
             </Stack.Navigator> 

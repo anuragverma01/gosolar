@@ -1,6 +1,13 @@
 import React from 'react';
 import {Text, TextInput, Button} from 'react-native-paper';
-import {View, Image, Pressable, Alert, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Image,
+  Pressable,
+  Alert,
+  ActivityIndicator,
+  StatusBar,
+} from 'react-native';
 import {useState} from 'react';
 import gosolar from '../asset/image/gosolar.png';
 import LoginTestComp from './LoginTestComp';
@@ -34,7 +41,7 @@ const LoginTestScr = () => {
         console.log('users', currentUser);
         setIsLoading(false);
         navigation.replace('BottomScr');
-        
+
         return true;
       })
       .catch(error => {
@@ -52,7 +59,8 @@ const LoginTestScr = () => {
   // console.log('Visile Pressed', visible);
   return (
     <Provider>
-      <View style={{backgroundColor: '#dbdad5', flex: 1}}>
+      <View style={{backgroundColor: '#dbdad5',flex:1}}>
+      <StatusBar barStyle="light-content" backgroundColor="#dbdad5" />
         <View
           style={{backgroundColor: '#F0F3FB', borderRadius: 32, margin: 25}}>
           <View>
