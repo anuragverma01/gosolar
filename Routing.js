@@ -16,11 +16,17 @@ import Arit from "./TestDrawer/Arit";
 import Icon from 'react-native-vector-icons/Ionicons';
 import { IconComponentContext } from "@react-native-material/core";
 import PaginationDotsExample from "./Test/Dot";
+import {useCallback} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import { Text,StatusBar } from "react-native";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 
 const DrawerRoutes =()=>{
+
+
+    
     return(
         <Drawer.Navigator drawerContent={props => <CustomDrawer {...props}/>} useLegacyImplementation={false}  screenOptions={{
             headerShown:false,

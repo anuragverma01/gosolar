@@ -20,7 +20,7 @@ const Child = () => {
   // console.log(visible,'pressed')
 
   const [data, setData] = useState([]);
-  console.log(data)
+  // console.log(data)
 
   const getdata = async () => {
 
@@ -47,7 +47,7 @@ const Child = () => {
 
   return (
 
-    <View style={{ marginVertical:0  }}>
+    <View>
 
       <View style={{ flexDirection: 'row', alignSelf: 'center', position: 'absolute' }}>
         {/* <Chip style={{ height: 40, width: 100 }}

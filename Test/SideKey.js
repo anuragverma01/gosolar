@@ -1,12 +1,9 @@
 import React from 'react';
 import {Image, Text, Touchable, View} from 'react-native';
-import { Button,Avatar   } from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Key from '../asset/image/SideKey.jpg';
 import {useNavigation} from '@react-navigation/native';
 import Side from '../asset/image/side.png'
-import { Icon } from '@rneui/themed';
 const SideKey = () => {
   const navigation = useNavigation();
   return (

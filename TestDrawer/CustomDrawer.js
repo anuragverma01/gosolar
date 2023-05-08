@@ -18,6 +18,8 @@ import {useNavigation} from '@react-navigation/native';
 const CustomDrawer = props => {
   const navigation = useNavigation();
 
+
+
   const doUserLogOut = async function () {
     return await Parse.User.logOut()
       .then(async () => {
@@ -65,7 +67,6 @@ const CustomDrawer = props => {
       <DrawerContentScrollView
         {...props}
         contentContainerStyle={{backgroundColor: '#ffff', flex: 1}}>
-        {/* <StatusBar barStyle="dark-content" backgroundColor="#ecf0f1" /> */}
 
         <View style={{flexDirection: 'row'}}>
           <Image

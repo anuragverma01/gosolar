@@ -4,11 +4,19 @@
 // import React in our code
 import React, {FC, ReactElement, useEffect, useState} from 'react';
 // import all the components we are going to use
-import {View, Text, Image, StyleSheet, Alert} from 'react-native';
+import {View, Text, Image, StyleSheet, Alert, StatusBar} from 'react-native';
 import Parse from 'parse/react-native';
 import {useNavigation} from '@react-navigation/native';
 import gosolar from '../../asset/image/gosolar.png';
+import {useCallback} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 const SplashScreen = () => {
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBackgroundColor('transparent');
+    }, []),
+  );
   const [align, setAlign] = useState('center');
   const [alignsecond, setAlignsecond] = useState(false);
 
@@ -40,12 +48,7 @@ const SplashScreen = () => {
 
   return (
     <View style={[styles.container, {justifyContent: align}]}>
-      <Image
-        source={
-          gosolar
-        }
-        style={{flex:1}}
-      />
+      <Image source={gosolar} style={{flex: 1}} />
       {!alignsecond ? null : navigation.replace('LoginTest')}
     </View>
   );
@@ -59,6 +62,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginHorizontal: 40,
-   
   },
 });

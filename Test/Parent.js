@@ -1,26 +1,41 @@
-import {StyleSheet, View, StatusBar, SafeAreaView} from 'react-native';
-import {useCallback} from 'react'
-import {Searchbar, Button} from 'react-native-paper';
+import {
+  StyleSheet,
+  View,
+  StatusBar,
+  SafeAreaView,
+  ScrollView,
+} from 'react-native';
+import {useCallback} from 'react';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
-import Child from './Child';
-import SideKey from './SideKey';
 import Parse from 'parse/react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import Topbar from '../src/screen/Topbar';
-import { useFocusEffect } from '@react-navigation/native';
-import Dot from './Dot';
+import {useFocusEffect} from '@react-navigation/native';
 import HomeSearchBar from '../src/screen/HomeSearchBar';
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
+import Dot from './Dot';
+import Child from './Child';
+import Home from '../src/screen/Home';
+import First from '../src/HomeScreen/First';
+import Second from '../src/HomeScreen/Second';
+import {Text} from 'react-native-paper';
+import HomeMobileList from '../Data/HomeMobileList';
+import HomeClotesList from '../Data/HomeClotesList';
+import HomeMakeupList from '../Data/HomemakeupList';
 const Parent = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => setSearchQuery(query);
 
   const [username, setUsername] = useState('');
+  const insets = useSafeAreaInsets();
   useFocusEffect(
     useCallback(() => {
       StatusBar.setBarStyle('dark-content');
-      StatusBar.setBackgroundColor('#97DEFF')
-    }, [])
+      StatusBar.setBackgroundColor('#97DEFF');
+    }, []),
   );
 
   // useEffect is called after the component is initially rendered and
@@ -42,71 +57,48 @@ const Parent = () => {
   }, [username]);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar
-        StatusBarStyle={'dark-content'}
-        barStyle="light-content"
-        backgroundColor="#97DEFF"
-      />
-
-      <View style={{backgroundColor: '#ffff'}}>
+    <SafeAreaProvider>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
-            flexDirection: 'row',
-            backgroundColor: '#97DEFF',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingHorizontal: 20,
-            paddingBottom: 20,
-            paddingTop: 15,
+            flex: 1,
+            paddingTop: insets.top,
+            paddingBottom: insets.bottom,
+            paddingLeft: insets.left,
+            paddingRight: insets.right,
+            backgroundColor: '#FFD966',
           }}>
-          {/* <View style={{marginVertical: 10}}>
-          <Text
-            style={{
-              fontSize: 45,
-              paddingStart: 30,
-              color: '#000000',
-              fontFamily: 'Crater',
-            }}>
-            Hi, {username} 👋
-          </Text>
-        </View> */}
+          <HomeSearchBar />
+          <View style={{marginBottom: 0}}>
+            <Topbar />
+          </View>
+          <View>
+            <Dot />
+          </View>
+          <View style={{backgroundColor: '#FFD966'}}>
+            {/* <Text style={{marginHorizontal:30,marginBottom:10}} >Up to 40% off | Up to ₹ 1,500 bank discount</Text> */}
+            <First
+              data={HomeMobileList}
+              Headline={'Buy smartphone that suits your budget'}
+              Headline2={'Up to 40% off |  Up to ₹ 1,500 bank discount'}
+            />
+            {/* <Text style={{marginHorizontal:30,fontSize:18,fontWeight:'bold',marginTop:30}} >Minimum 60% off | Top brands for him</Text> */}
+            <First
+              data={HomeClotesList}
+              Headline={'Minimum 60% off | Top brands for him'}
+            />
 
-<HomeSearchBar/>
-          {/* <Searchbar
-            placeholder="Search"
-            placeholderTextColor="#96948f"
-            style={{
-              width: 300,
-              height: 50,
-              backgroundColor: '#ffff',
-              // marginHorizontal: 40,
-              // marginVertical:10,
-            }}
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-          /> */}
+            <First
+              data={HomeMakeupList}
+              Headline={'Never before deals on makeup'}
+              Headline2={'Up to 70% off '}
 
-          <SideKey />
+            />
+          </View>
         </View>
-        <Topbar />
-        <Dot />
-        <Child />
-      </View>
-    </SafeAreaView>
+      </ScrollView>
+    </SafeAreaProvider>
   );
 };
-
-const style = StyleSheet.create({
-  // Search: {
-  //   maxWidth: 250,
-  //   maxHeight: 45,
-  //   borderRadius: 6,
-  //   borderWidth: 1,
-  //   marginHorizontal: 30,
-  //   paddingHorizontal: 30,
-  //   marginVertical: 10,
-  // },
-});
 
 export default Parent;
