@@ -1,5 +1,11 @@
 import React from 'react';
-import {Image, SafeAreaView, Text, View} from 'react-native';
+import {
+  Image,
+  SafeAreaView,
+  Text,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import Applicance from '../../asset/image/Appliances.png';
 import Fashion from '../../asset/image/Fashion.png';
 import Fruniture from '../../asset/image/Fruniture.png';
@@ -8,7 +14,12 @@ import Books from '../../asset/image/Books.jpg';
 import Electronic from '../../asset/image/Electroic.png';
 import {ScrollView} from 'react-native-gesture-handler';
 import Phone from '../../asset/image/phone.png';
+import {useNavigation} from '@react-navigation/native';
+import BooksHeadermain from './BooksHeadermain';
+import BookHeader from '../../Data/HeaderData/BookHeader';
+import MobileHeader from '../../Data/HeaderData/MobileHeader';
 const Topbar = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <View>
@@ -20,16 +31,25 @@ const Topbar = () => {
             marginHorizontal: 20,
           }}>
           <View style={{flexDirection: 'column'}}>
-            <Image
-              style={{width: 50, height: 60, borderRadius: 100}}
-              source={Books}
-            />
+            <TouchableHighlight
+              activeOpacity={0}
+              underlayColor="transparent"
+              onPress={() => navigation.navigate('bookheadermain',{data:BookHeader})}>
+              <Image
+                style={{width: 50, height: 60, borderRadius: 100}}
+                source={Books}
+              />
+            </TouchableHighlight>
             <Text style={{marginStart: 5, fontWeight: '500', color: '#000000'}}>
               Books
             </Text>
           </View>
 
           <View>
+          <TouchableHighlight
+              activeOpacity={0}
+              underlayColor="transparent"
+              onPress={() => navigation.navigate('bookheadermain',{data:MobileHeader})}>
             <Image
               style={{
                 width: 60,
@@ -39,6 +59,7 @@ const Topbar = () => {
               }}
               source={Phone}
             />
+             </TouchableHighlight>
             <Text
               style={{marginStart: 15, fontWeight: '500', color: '#000000'}}>
               Mobile

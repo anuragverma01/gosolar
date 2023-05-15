@@ -1,6 +1,5 @@
 import {View, Text, Image, FlatList} from 'react-native';
 import React from 'react';
-import HomeMobileList from '../../Data/HomeMobileList';
 
 export default function First(props) {
   const {data, Headline, Headline2} = props;
@@ -13,13 +12,12 @@ export default function First(props) {
           fontSize: 18,
           fontWeight: 'bold',
           marginTop: 30,
-          color:'#000000'
+          color: '#000000',
         }}>
         {Headline}
       </Text>
 
-             <Text style={{marginHorizontal:30,marginBottom:10}} >{Headline2}</Text> 
-
+      <Text style={{marginHorizontal: 30, marginBottom: 10}}>{Headline2}</Text>
 
       <View
         style={{backgroundColor: '#ffffff', marginStart: 10, marginEnd: 10}}>

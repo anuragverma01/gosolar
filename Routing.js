@@ -19,6 +19,7 @@ import PaginationDotsExample from "./Test/Dot";
 import {useCallback} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
 import { Text,StatusBar } from "react-native";
+import BooksHeadermain from "./src/screen/BooksHeadermain";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -73,6 +74,8 @@ export default function Routing() {
                 <Stack.Screen name='Userreg' component={UserRegistration} options={{ headerShown: false, }} />
                 <Stack.Screen name='Splash' component={SplashScreen} options={{ headerShown: false, }} />
                 <Stack.Screen name='Dot' component={PaginationDotsExample} options={{ headerShown: false, }} />
+                <Stack.Screen name='bookheadermain' component={BooksHeadermain} options={{ headerShown: false, }} />
+
                 
             
             </Stack.Navigator> 

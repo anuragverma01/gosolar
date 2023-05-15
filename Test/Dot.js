@@ -57,9 +57,9 @@ export default class Dot extends Component {
         <SliderBox
           inactiveDotColor="#97DEFF"
           resizeMode="stretch"
-          autoplay={false}
+          autoplay={true}
           circleLoop
-          autoplayInterval={4000}
+          autoplayInterval={3000}
           imageLoadingColor="transparent"
           images={this.state.images}
           sliderBoxHeight={200}

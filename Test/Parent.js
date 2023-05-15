@@ -16,17 +16,24 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import Dot from './Dot';
-import Child from './Child';
-import Home from '../src/screen/Home';
 import First from '../src/HomeScreen/First';
-import Second from '../src/HomeScreen/Second';
-import {Text} from 'react-native-paper';
 import HomeMobileList from '../Data/HomeMobileList';
 import HomeClotesList from '../Data/HomeClotesList';
 import HomeMakeupList from '../Data/HomemakeupList';
+import HomeWomenList from '../Data/HomeWomenList';
+import HomeAppliancesList from '../Data/HomeAppliancesList';
+import Appimg from '../asset/image/Gif/App.jpg';
+import Boatimg from '../asset/image/Gif/Boat.gif';
+import Bookimg from '../asset/image/Gif/Books.jpg';
+import Fashionimg from '../asset/image/Gif/fashion.gif';
+import Makeupimg from '../asset/image/Gif/Makeup.gif';
+import Mobileimg from '../asset/image/Gif/Mobile.gif';
+import Tvimg from '../asset/image/Gif/Tv01.gif';
+import {Image} from 'react-native-elements';
+import BookHeader from '../Data/HeaderData/BookHeader';
 const Parent = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
-
+// console.log('Data', BookHeader)
   const onChangeSearch = query => setSearchQuery(query);
 
   const [username, setUsername] = useState('');
@@ -75,24 +82,97 @@ const Parent = () => {
           <View>
             <Dot />
           </View>
+
           <View style={{backgroundColor: '#FFD966'}}>
-            {/* <Text style={{marginHorizontal:30,marginBottom:10}} >Up to 40% off | Up to ₹ 1,500 bank discount</Text> */}
             <First
               data={HomeMobileList}
               Headline={'Buy smartphone that suits your budget'}
               Headline2={'Up to 40% off |  Up to ₹ 1,500 bank discount'}
             />
-            {/* <Text style={{marginHorizontal:30,fontSize:18,fontWeight:'bold',marginTop:30}} >Minimum 60% off | Top brands for him</Text> */}
+            <Image
+              style={{
+                width: 350,
+                height: 200,
+                resizeMode: 'contain',
+                marginHorizontal: 20,
+                borderRadius: 10,
+                marginVertical: 10,
+              }}
+              source={Boatimg}
+            />
+                <Image
+              style={{
+                width: 350,
+                height: 200,
+                resizeMode: 'contain',
+                marginHorizontal: 20,
+                borderRadius: 10,
+                marginVertical: 10,
+              }}
+              source={Mobileimg}
+            />
+
             <First
               data={HomeClotesList}
               Headline={'Minimum 60% off | Top brands for him'}
             />
-
+            <Image
+              style={{
+                width: 350,
+                height: 200,
+                resizeMode: 'contain',
+                marginHorizontal: 20,
+                borderRadius: 10,
+                marginVertical: 10,
+              }}
+              source={Fashionimg}
+            />
             <First
               data={HomeMakeupList}
               Headline={'Never before deals on makeup'}
               Headline2={'Up to 70% off '}
+            />
+            <Image
+              style={{
+                width: 350,
+                height: 200,
+                resizeMode: 'contain',
+                marginHorizontal: 20,
+                borderRadius: 10,
+                marginVertical: 10,
+              }}
+              source={Makeupimg}
+            />
 
+            <First
+              data={HomeWomenList}
+              Headline={'Up to 60% off | Styles for women'}
+            />
+            <Image
+              style={{
+                width: 350,
+                height: 200,
+                resizeMode: 'contain',
+                marginHorizontal: 20,
+                borderRadius: 10,
+                marginVertical: 10,
+              }}
+              source={Appimg}
+            />
+            <First
+              data={HomeAppliancesList}
+              Headline={'Home appliances | 10% off on HDFC cards'}
+            />
+                <Image
+              style={{
+                width: 350,
+                height: 200,
+                resizeMode: 'contain',
+                marginHorizontal: 20,
+                borderRadius: 10,
+                marginVertical: 10,
+              }}
+              source={Bookimg}
             />
           </View>
         </View>
