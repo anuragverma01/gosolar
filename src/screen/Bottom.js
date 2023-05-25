@@ -12,12 +12,7 @@ import Animated, {
 const Tab = createBottomTabNavigator();
 
 function Bottom() {
-
-
-
   return (
-
-  
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {

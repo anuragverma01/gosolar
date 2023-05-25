@@ -6,20 +6,61 @@ import {
   Image,
   StyleSheet,
   Pressable,
+  Touchable,
   SafeAreaView,
 } from 'react-native';
 import React, {useState} from 'react';
-import BookHeader from '../../Data/HeaderData/BookHeader';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+
+import {TouchableOpacity} from 'react-native-gesture-handler';
+
 export default function BooksHeadermain(props) {
+  const [visible, setVisible] = useState();
+  // const showModal = () => setVisible(true);
+  // const hideModal = () => setVisible(false);
+
   const {data} = props.route.params;
   // console.log('data',props.route.params)
-  const [hide, setHide] = useState();
   const navigation = useNavigation();
+  const [favoriteList, setFavoriteList] = useState([]);
+  const [hide, setHide] = useState([]);
+  // function to add an item to favorite list
+  const onFavorite = liked => {
+    setFavoriteList([...favoriteList, liked]);
+  };
+
+  // function to remove an item from favorite list
+  const onRemoveFavorite = unliked => {
+    const filteredList = favoriteList.filter(item => item.id !== unliked.id);
+    setFavoriteList(filteredList);
+  };
+
+  // function to check if an item exists in the favorite list or not
+  const ifExists = liked => {
+    if (favoriteList.filter(item => item.id === liked.id).length > 0) {
+      //  console.log('Item',liked.id,liked)
+
+      return true;
+    }
+    return false;
+  };
+
+  // console.log('favorite item!!!!!!!', favoriteList);
+
+  const Whistlist = item => {
+    let filter = favoriteList?.filter(v => v.id === item?.id);
+    // console.log('filter', filter, item);
+    if (filter?.length > 0) {
+      setFavoriteList(favoriteList?.filter(v => v.id !== item?.id));
+    } else {
+      setFavoriteList([item, ...favoriteList]);
+    }
+    // ifExists(item) ? onRemoveFavorite(item) : onFavorite(item);
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, backgroundColor: '#ffffff'}}>
+      <View style={{flex: 1, backgroundColor: '#FFD966'}}>
         <Pressable
           onPress={() => navigation.navigate('BottomScr')}
           style={{left: 10}}>
@@ -28,13 +69,14 @@ export default function BooksHeadermain(props) {
 
         <FlatList
           data={data}
+          // ListHeaderComponent={Arit}
           keyExtractor={({id}) => id}
           renderItem={({item}) => (
             <View
               style={{
                 flex: 1,
                 borderRadius: 10,
-                // backgroundColor: '#ffffff',
+                marginVertical: 0,
               }}>
               <View
                 style={{
@@ -42,9 +84,9 @@ export default function BooksHeadermain(props) {
                   flexDirection: 'row',
                 }}>
                 <Image
-                  resizeMode='stretch'
+                  resizeMode="stretch"
                   source={item.frontimage}
-                  style={{width: 150, height: 180, borderRadius: 20,marginHorizontal:5}}
+                  style={styles.imagestyle}
                 />
                 <View
                   style={{
@@ -65,59 +107,105 @@ export default function BooksHeadermain(props) {
                       {item.price}
                     </Text>
 
-                    <TouchableHighlight
-                      style={{
-                        backgroundColor: '#F8F2F1',
-                        marginHorizontal: 70,
-                        borderRadius: 50,
-                        width: 50,
-                        height: 50,
-                        bottom: 10,
-                      }}>
+                    <TouchableOpacity
+                      style={styles.touchable}
+                      onPress={() => Whistlist(item)}>
                       <Icon
-                        onPress={() => setHide(!hide)}
-                        name={hide ? 'heart' : 'heart-outline'}
+                        onPress={() => Whistlist(item)}
+                        name={
+                          favoriteList?.some(v => v.id === item.id)
+                            ? 'heart'
+                            : 'heart-outline'
+                        }
                         style={styles.icon}
                         // name="heart-outline"
                         type="font-awesome"
                         color="#f00"
                         size={35}
                       />
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
-              <TouchableHighlight
-                onPress={() => console.log('pre')}
-                style={styles.button}>
+              <TouchableHighlight style={styles.button}>
                 <Text style={styles.text}>Add to Cart</Text>
               </TouchableHighlight>
             </View>
           )}
         />
       </View>
+      <View style={{alignItems: 'center'}}>
+        <View
+          visible={favoriteList.length > 0 ? true : false}
+          style={styles.model}>
+          <View
+            style={{
+              flexDirection: 'row',
+              marginVertical: 15,
+              alignItems: 'baseline',
+            }}>
+            <Text style={{color: '#ffff', fontSize: 14}}>1 ITEM</Text>
+            <Text style={{color: '#ffff', fontSize: 20, left: 10}}>$240</Text>
+          </View>
+
+          <View style={{flexDirection: 'row-reverse', right: 20, bottom: 40}}>
+            <Text
+              onPress={() => {
+                navigation.navigate('WishList', {favoriteList});
+              }}
+              style={{color: '#ffff', fontSize: 16}}>
+              Next
+            </Text>
+          </View>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#FFD966',
-    height: 50,
-    width: 300,
+    backgroundColor: '#97DEFF',
+    height: 40,
+    width: 200,
     alignSelf: 'center',
     borderRadius: 10,
-    marginVertical: 10,
+    marginTop: 10,
+    marginBottom: 50,
   },
 
   text: {
     color: '#000000',
     textAlign: 'center',
-    padding: 12,
+    padding: 8,
     fontSize: 16,
   },
   icon: {
     // position: 'absolute',
     // alignSelf:'center',
     padding: 7,
+  },
+  imagestyle: {
+    width: 150,
+    height: 180,
+    borderRadius: 20,
+    marginHorizontal: 5,
+  },
+  touchable: {
+    backgroundColor: '#ffff',
+    marginHorizontal: 70,
+    borderRadius: 50,
+    width: 50,
+    height: 50,
+    zIndex: 1,
+    bottom: 10,
+  },
+  model: {
+    backgroundColor: '#f00',
+    borderRadius: 10,
+    position: 'absolute',
+    width: 360,
+    height: 60,
+    bottom: 10,
+    paddingStart: 20,
   },
 });

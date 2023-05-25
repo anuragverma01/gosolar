@@ -33,7 +33,7 @@ import {Image} from 'react-native-elements';
 import BookHeader from '../Data/HeaderData/BookHeader';
 const Parent = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
-// console.log('Data', BookHeader)
+  // console.log('Data', BookHeader)
   const onChangeSearch = query => setSearchQuery(query);
 
   const [username, setUsername] = useState('');
@@ -100,7 +100,7 @@ const Parent = () => {
               }}
               source={Boatimg}
             />
-                <Image
+            <Image
               style={{
                 width: 350,
                 height: 200,
@@ -163,7 +163,7 @@ const Parent = () => {
               data={HomeAppliancesList}
               Headline={'Home appliances | 10% off on HDFC cards'}
             />
-                <Image
+            <Image
               style={{
                 width: 350,
                 height: 200,

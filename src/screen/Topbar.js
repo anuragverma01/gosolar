@@ -17,7 +17,7 @@ import Phone from '../../asset/image/phone.png';
 import {useNavigation} from '@react-navigation/native';
 import BooksHeadermain from './BooksHeadermain';
 import BookHeader from '../../Data/HeaderData/BookHeader';
-import MobileHeader from '../../Data/HeaderData/MobileHeader';
+import MobileHeader from '../../Data/HeaderData/MobileHeaderimg';
 const Topbar = () => {
   const navigation = useNavigation();
   return (
@@ -49,7 +49,7 @@ const Topbar = () => {
           <TouchableHighlight
               activeOpacity={0}
               underlayColor="transparent"
-              onPress={() => navigation.navigate('bookheadermain',{data:MobileHeader})}>
+              onPress={() => navigation.navigate('mobileheadermain')}>
             <Image
               style={{
                 width: 60,

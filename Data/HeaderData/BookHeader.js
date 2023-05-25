@@ -195,9 +195,3 @@ const BookHeader = [
 export default BookHeader;
 
 
-const mobileheader = [
-  {
-    id:'1',
-    
-  }
-]
