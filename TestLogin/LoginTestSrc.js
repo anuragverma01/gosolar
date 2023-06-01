@@ -115,10 +115,7 @@ const LoginTestScr = () => {
               onPress={() => doUserLogIn()}
               // title={isLoading ? 'Loading...' : 'Press me'}
               disabled={isLoading}>
-              {isLoading ? (
-                <ActivityIndicator size="small" color="white" />
-              ) : (
-                <Text
+              {isLoading ? ( <ActivityIndicator size="small" color="white" />) : (<Text
                   style={{
                     textAlign: 'center',
                     color: '#fff',

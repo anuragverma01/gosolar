@@ -14,8 +14,8 @@ export default function MobileHeadermain() {
       <View>
         <Pressable
           onPress={() => navigation.navigate('BottomScr')}
-          style={{left: 10}}>
-          <Icon name="arrow-back" color="#000000" size={32} />
+          style={{paddingHorizontal:10,backgroundColor:'#97DEFF'}}>
+          <Icon name="arrow-back" color="#000000" size={32}  />
         </Pressable>
         <ScrollView>
           <Dot />

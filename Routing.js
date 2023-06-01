@@ -79,6 +79,7 @@ export default function Routing() {
                 <Stack.Screen name='bookheadermain' component={BooksHeadermain} options={{ headerShown: false, }} />
                 <Stack.Screen name='mobileheadermain' component={MobileHeadermain} options={{ headerShown: false, }} />
                 <Stack.Screen name='WishList' component={Arit} options={{ headerShown: false, }} />
+                <Stack.Screen name='Addtocart' component={Feed} options={{ headerShown: false, }} />
 
                 
             

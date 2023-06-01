@@ -8,24 +8,62 @@ import {
   Pressable,
   Touchable,
   SafeAreaView,
+  StatusBar
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useCallback} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import Icons from 'react-native-vector-icons/MaterialIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function BooksHeadermain(props) {
-  const [visible, setVisible] = useState();
-  // const showModal = () => setVisible(true);
-  // const hideModal = () => setVisible(false);
-
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBackgroundColor('#FFD966');
+    }, []),
+  );
   const {data} = props.route.params;
   // console.log('data',props.route.params)
   const navigation = useNavigation();
   const [favoriteList, setFavoriteList] = useState([]);
-  const [hide, setHide] = useState([]);
+  const [cart, setcart] = useState([]);
   // function to add an item to favorite list
+
+  const onCart = add => {
+    setcart([...cart, add]);
+  };
+
+  const onRemoveCart = unadd => {
+    const cart = cart.filter(item => item.id !== unadd.id);
+    setcart(cart);
+  };
+
+  const ifCartExists = add => {
+    if (cart.filter(item => item.id === add.id).length > 0) {
+      //  console.log('Item',add.id)
+
+      return true;
+    }
+    return false;
+  };
+  const addtocart = item => {
+    let filter = cart?.filter(v => v.id === item?.id);
+    console.log('filter', filter, item);
+    if (filter?.length > 0) {
+      setcart(cart?.filter(v => v.id !== item?.id));
+    } else {
+      setcart([item, ...cart]);
+    }
+    // ifExists(item) ? onRemoveFavorite(item) : onFavorite(item);
+  };
+
+  //===========================================================================================
+
+  //===========================================================================================
+
   const onFavorite = liked => {
     setFavoriteList([...favoriteList, liked]);
   };
@@ -127,37 +165,87 @@ export default function BooksHeadermain(props) {
                   </View>
                 </View>
               </View>
-              <TouchableHighlight style={styles.button}>
+              <TouchableHighlight
+                onPress={() => addtocart(item)}
+                // onPress={() => {
+                //   navigation.navigate('Addtocart', {cart});
+                // }}
+                style={styles.button}>
                 <Text style={styles.text}>Add to Cart</Text>
               </TouchableHighlight>
             </View>
           )}
         />
       </View>
-      <View style={{alignItems: 'center'}}>
-        <View
-          visible={favoriteList.length > 0 ? true : false}
-          style={styles.model}>
-          <View
-            style={{
-              flexDirection: 'row',
-              marginVertical: 15,
-              alignItems: 'baseline',
-            }}>
-            <Text style={{color: '#ffff', fontSize: 14}}>1 ITEM</Text>
-            <Text style={{color: '#ffff', fontSize: 20, left: 10}}>$240</Text>
-          </View>
 
-          <View style={{flexDirection: 'row-reverse', right: 20, bottom: 40}}>
-            <Text
-              onPress={() => {
-                navigation.navigate('WishList', {favoriteList});
-              }}
-              style={{color: '#ffff', fontSize: 16}}>
-              Next
-            </Text>
+      <View style={{alignItems: 'center'}}>
+        {cart.length > 0 ? (
+          <View style={styles.model}>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginVertical: 10,
+                alignItems: 'baseline',
+              }}>
+              <Text style={{color: '#ffff', fontSize: 20}}>{cart.length}</Text>
+              <Icon
+                style={{left: 10, top: 5}}
+                name="cart"
+                size={30}
+                color="#ffffff"
+              />
+              <Text style={{color: '#ffff', fontSize: 18, left: 10}}>Add</Text>
+            </View>
+
+            <View style={{flexDirection: 'row-reverse', right: 50, bottom: 45}}>
+              <Text
+                onPress={() => {
+                  navigation.navigate('Addtocart', {cart});
+                }}
+                style={{color: '#ffff', fontSize: 20, top: 5}}>
+                Next
+              </Text>
+              <Icons
+                style={{position: 'absolute', left: -30}}
+                name="arrow-right"
+                size={40}
+                color="#ffffff"
+              />
+            </View>
           </View>
-        </View>
+        ) : null}
+
+        {favoriteList.length > 0 ? (
+          <View style={styles.model}>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginVertical: 15,
+                alignItems: 'baseline',
+              }}>
+              <Text style={{color: '#ffff', fontSize: 20}}>
+                {favoriteList.length}
+              </Text>
+              <Text style={{color: '#ffff', fontSize: 20, left: 10}}>ITEM</Text>
+            </View>
+
+            <View style={{flexDirection: 'row-reverse', right: 20, bottom: 40}}>
+              <Text
+                onPress={() => {
+                  navigation.navigate('WishList', {favoriteList});
+                }}
+                style={{color: '#ffff', fontSize: 20, left: 20}}>
+                Next
+              </Text>
+              <Icons
+                style={{position: 'absolute', left: -8, top: -5}}
+                name="arrow-right"
+                size={40}
+                color="#ffffff"
+              />
+            </View>
+          </View>
+        ) : null}
       </View>
     </SafeAreaView>
   );
@@ -201,9 +289,9 @@ const styles = StyleSheet.create({
   },
   model: {
     backgroundColor: '#f00',
-    borderRadius: 10,
+    borderRadius: 5,
     position: 'absolute',
-    width: 360,
+    width: 380,
     height: 60,
     bottom: 10,
     paddingStart: 20,

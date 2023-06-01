@@ -18,12 +18,12 @@ const Arit = props => {
   const navigation = useNavigation();
   console.log('wishlist', props.route.params.favoriteList);
   const [data, setData] = React.useState(props.route.params.favoriteList);
-  console.log("data",setData)
+  // console.log("data",setData)
 
   const removeHandler = Removeid => {
     let removed = data.filter(i => i.id !== Removeid);
     setData(removed);
-    console.log("data!!!!!",data)
+    console.log('data!!!!!', data);
   };
   return (
     <View style={{flex: 1, backgroundColor: '#FFD966'}}>
