@@ -89,91 +89,95 @@ const Parent = () => {
               Headline={'Buy smartphone that suits your budget'}
               Headline2={'Up to 40% off |  Up to ₹ 1,500 bank discount'}
             />
-            <Image
+            <View
               style={{
-                width: 350,
-                height: 200,
-                resizeMode: 'contain',
-                marginHorizontal: 20,
-                borderRadius: 10,
-                marginVertical: 10,
-              }}
-              source={Boatimg}
-            />
-            <Image
-              style={{
-                width: 350,
-                height: 200,
-                resizeMode: 'contain',
-                marginHorizontal: 20,
-                borderRadius: 10,
-                marginVertical: 10,
-              }}
-              source={Mobileimg}
-            />
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginTop: 20,
+              }}>
+              <Image
+                style={{
+                  width: 350,
+                  height: 200,
+                  resizeMode: 'contain',
+                  borderRadius: 10,
+                }}
+                source={Boatimg}
+              />
+              <Image
+                style={{
+                  width: 350,
+                  height: 200,
+                  resizeMode: 'contain',
+                  borderRadius: 10,
+                  marginVertical: 10,
+                }}
+                source={Mobileimg}
+              />
+            </View>
 
             <First
               data={HomeClotesList}
               Headline={'Minimum 60% off | Top brands for him'}
             />
-            <Image
-              style={{
-                width: 350,
-                height: 200,
-                resizeMode: 'contain',
-                marginHorizontal: 20,
-                borderRadius: 10,
-                marginVertical: 10,
-              }}
-              source={Fashionimg}
-            />
+            <View style={{alignItems: 'center', marginTop: 10}}>
+              <Image
+                style={{
+                  width: 350,
+                  height: 200,
+                  resizeMode: 'contain',
+                  borderRadius: 10,
+                }}
+                source={Fashionimg}
+              />
+            </View>
             <First
               data={HomeMakeupList}
               Headline={'Never before deals on makeup'}
               Headline2={'Up to 70% off '}
             />
-            <Image
-              style={{
-                width: 350,
-                height: 200,
-                resizeMode: 'contain',
-                marginHorizontal: 20,
-                borderRadius: 10,
-                marginVertical: 10,
-              }}
-              source={Makeupimg}
-            />
+            <View style={{alignItems: 'center', marginTop: 20}}>
+              <Image
+                style={{
+                  width: 350,
+                  height: 200,
+                  resizeMode: 'contain',
+                  borderRadius: 10,
+                }}
+                source={Makeupimg}
+              />
+            </View>
 
             <First
               data={HomeWomenList}
               Headline={'Up to 60% off | Styles for women'}
             />
-            <Image
-              style={{
-                width: 350,
-                height: 200,
-                resizeMode: 'contain',
-                marginHorizontal: 20,
-                borderRadius: 10,
-                marginVertical: 10,
-              }}
-              source={Appimg}
-            />
+            <View style={{alignItems: 'center', marginTop: 20}}>
+              <Image
+                style={{
+                  width: 350,
+                  height: 200,
+                  resizeMode: 'contain',
+                  borderRadius: 10,
+                }}
+                source={Appimg}
+              />
+            </View>
             <First
               data={HomeAppliancesList}
               Headline={'Home appliances | 10% off on HDFC cards'}
             />
-            <Image
-              style={{
-                width: 350,
-                height: 200,
-                resizeMode: 'contain',
-                marginHorizontal: 20,
-                borderRadius: 10,
-                marginVertical: 10,
-              }}
-              source={Bookimg}
-            />
+            <View style={{alignItems: 'center', marginTop: 20}}>
+              <Image
+                style={{
+                  width: 350,
+                  height: 200,
+                  resizeMode: 'contain',
+                  borderRadius: 10,
+                }}
+                source={Bookimg}
+              />
+            </View>
           </View>
         </View>
       </ScrollView>

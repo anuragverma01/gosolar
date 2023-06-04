@@ -54,7 +54,7 @@ export default class Dot extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <SliderBox
+        <SliderBox 
           inactiveDotColor="#97DEFF"
           resizeMode="stretch"
           autoplay={true}
@@ -74,7 +74,7 @@ export default class Dot extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1
+    // flex: 1,
     resizeMode: 'stretch',
     marginVertical: 10,
   },

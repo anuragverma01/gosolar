@@ -5,13 +5,9 @@ import budgetimg from '../../../asset/image/HeaderMobileimg/Budget/budget.jpg';
 
 export default function Bud() {
   return (
-    <View>
-      <View style={{alignSelf: 'center'}}>
-        <Image
-          resizeMode="stretch"
-          source={budgetimg}
-          style={{width: 350, height: 50}}
-        />
+    <View style={{flex: 1}}>
+      <View style={{alignItems: 'center', flex: 1}}>
+        <Image resizeMode="contain" source={budgetimg} style={{height: 50}} />
       </View>
       <FlatList
         numColumns={2}
@@ -21,11 +17,11 @@ export default function Bud() {
           <View
             style={{
               flex: 1,
-              marginHorizontal: 10,
+              alignItems: 'center',
             }}>
             <Image
-              resizeMode="stretch"
-              style={{height: 250, width: 180}}
+              resizeMode="contain"
+              style={{height: 250, flex: 1}}
               source={item.image}
             />
           </View>

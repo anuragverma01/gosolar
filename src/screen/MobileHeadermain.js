@@ -13,7 +13,7 @@ export default function MobileHeadermain() {
     <View>
       <View>
         <Pressable
-          onPress={() => navigation.navigate('BottomScr')}
+          onPress={() => navigation.goBack()}
           style={{paddingHorizontal:10,backgroundColor:'#97DEFF'}}>
           <Icon name="arrow-back" color="#000000" size={32}  />
         </Pressable>

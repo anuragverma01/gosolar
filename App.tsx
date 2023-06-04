@@ -6,7 +6,7 @@ import { Provider } from "react-native-paper";
 
 import Parse from "parse/react-native.js";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import 'react-native-gesture-handler';
 
 
 

@@ -18,7 +18,7 @@ const Arit = props => {
   const navigation = useNavigation();
   console.log('wishlist', props.route.params.favoriteList);
   const [data, setData] = React.useState(props.route.params.favoriteList);
-  // console.log("data",setData)
+  console.log("data",data)
 
   const removeHandler = Removeid => {
     let removed = data.filter(i => i.id !== Removeid);
@@ -28,7 +28,7 @@ const Arit = props => {
   return (
     <View style={{flex: 1, backgroundColor: '#FFD966'}}>
       <Pressable
-        onPress={() => navigation.navigate('BottomScr')}
+        onPress={() => navigation.goBack()}
         style={{left: 10}}>
         <Icon name="arrow-back" color="#000000" size={32} />
       </Pressable>

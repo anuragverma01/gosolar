@@ -28,7 +28,7 @@ const Feed = props => {
   return (
     <View style={{flex: 1, backgroundColor: '#FFD966'}}>
       <Pressable
-        onPress={() => navigation.navigate('BottomScr')}
+        onPress={() => navigation.goBack()}
         style={{left: 10}}>
         <Icon name="arrow-back" color="#000000" size={32} />
       </Pressable>

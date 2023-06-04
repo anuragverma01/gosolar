@@ -8,7 +8,8 @@ import {
   Pressable,
   Touchable,
   SafeAreaView,
-  StatusBar
+  StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useCallback} from 'react';
@@ -16,7 +17,6 @@ import {useFocusEffect} from '@react-navigation/native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function BooksHeadermain(props) {
   useFocusEffect(
@@ -96,6 +96,13 @@ export default function BooksHeadermain(props) {
     }
     // ifExists(item) ? onRemoveFavorite(item) : onFavorite(item);
   };
+  const gettotal = () => {
+    let total = 0;
+    favoriteList.map(item => {
+      total = total + item.price;
+    });
+    return total;
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#FFD966'}}>
@@ -116,69 +123,75 @@ export default function BooksHeadermain(props) {
                 borderRadius: 10,
                 marginVertical: 0,
               }}>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: 'row',
+              <TouchableOpacity
+                onPress={() => {
+                  console.log('Pressed');
                 }}>
-                <Image
-                  resizeMode="stretch"
-                  source={item.frontimage}
-                  style={styles.imagestyle}
-                />
                 <View
                   style={{
-                    flexDirection: 'column',
                     flex: 1,
-                    marginHorizontal: 10,
+                    flexDirection: 'row',
                   }}>
-                  <Text style={{color: '#000000', fontSize: 16}}>
-                    {item.title}
-                  </Text>
-
-                  <Text style={{fontSize: 12, textAlign: 'justify'}}>
-                    {item.subtitle}
-                  </Text>
-                  <Text>{item.rating}</Text>
-                  <View style={{flexDirection: 'row'}}>
-                    <Text style={{color: '#000000', fontSize: 19}}>
-                      {item.price}
+                  <Image
+                    resizeMode="stretch"
+                    source={item.frontimage}
+                    style={styles.imagestyle}
+                  />
+                  <View
+                    style={{
+                      flexDirection: 'column',
+                      flex: 1,
+                      marginHorizontal: 10,
+                    }}>
+                    <Text style={{color: '#000000', fontSize: 16}}>
+                      {item.title}
                     </Text>
 
-                    <TouchableOpacity
-                      style={styles.touchable}
-                      onPress={() => Whistlist(item)}>
-                      <Icon
-                        onPress={() => Whistlist(item)}
-                        name={
-                          favoriteList?.some(v => v.id === item.id)
-                            ? 'heart'
-                            : 'heart-outline'
-                        }
-                        style={styles.icon}
-                        // name="heart-outline"
-                        type="font-awesome"
-                        color="#f00"
-                        size={35}
-                      />
-                    </TouchableOpacity>
+                    <Text style={{fontSize: 12, textAlign: 'justify'}}>
+                      {item.subtitle}
+                    </Text>
+                    <Text>{item.rating}</Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Text style={{color: '#000000', fontSize: 19}}>
+                        ₹{item.price}
+                      </Text>
+
+                      <TouchableOpacity
+                        style={styles.touchable}
+                        onPress={() => Whistlist(item)}>
+                        <Icon
+                          onPress={() => Whistlist(item)}
+                          name={
+                            favoriteList?.some(v => v.id === item.id)
+                              ? 'heart'
+                              : 'heart-outline'
+                          }
+                          style={styles.icon}
+                          // name="heart-outline"
+                          type="font-awesome"
+                          color="#f00"
+                          size={35}
+                        />
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 </View>
-              </View>
-              <TouchableHighlight
-                onPress={() => addtocart(item)}
-                // onPress={() => {
-                //   navigation.navigate('Addtocart', {cart});
-                // }}
-                style={styles.button}>
-                <Text style={styles.text}>Add to Cart</Text>
-              </TouchableHighlight>
+                <TouchableOpacity
+                  onPress={() => addtocart(item)}
+                  style={styles.button}>
+                  <Text style={styles.text}>
+                    {cart?.some(v => v.id === item.id)
+                      ? 'Remove From Cart'
+                      : 'Add To Cart '}
+                  </Text>
+                </TouchableOpacity>
+              </TouchableOpacity>
             </View>
           )}
         />
       </View>
 
-      <View style={{alignItems: 'center'}}>
+      <View style={{alignItems: 'center' }}>
         {cart.length > 0 ? (
           <View style={styles.model}>
             <View
@@ -226,7 +239,9 @@ export default function BooksHeadermain(props) {
               <Text style={{color: '#ffff', fontSize: 20}}>
                 {favoriteList.length}
               </Text>
-              <Text style={{color: '#ffff', fontSize: 20, left: 10}}>ITEM</Text>
+              <Text style={{color: '#ffff', fontSize: 20, left: 10}}>
+                {'ITEM ₹' + gettotal()}
+              </Text>
             </View>
 
             <View style={{flexDirection: 'row-reverse', right: 20, bottom: 40}}>
@@ -295,5 +310,6 @@ const styles = StyleSheet.create({
     height: 60,
     bottom: 10,
     paddingStart: 20,
+    flex:1
   },
 });
