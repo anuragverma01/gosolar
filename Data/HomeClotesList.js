@@ -28,6 +28,8 @@ const HomeClotesList = [
       image: c4,
       title: 'Shorts',
     },
+    
+    
   ];
   
   export default HomeClotesList;

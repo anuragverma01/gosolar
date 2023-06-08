@@ -8,17 +8,38 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native';
-import React from 'react';
+import {useEffect, useState} from 'react';
 
 import BookHeader from '../Data/HeaderData/BookHeader';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Arit = props => {
   const navigation = useNavigation();
   console.log('wishlist', props.route.params.favoriteList);
-  const [data, setData] = React.useState(props.route.params.favoriteList);
-  console.log("data",data)
+  const [data, setData] = useState(props.route.params.favoriteList);
+  console.log('data', data);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const mobile = await AsyncStorage.getItem('value');
+  //     console.log('Data@@@@@@@@@@', mobile);
+  //   }
+  //   fetchData();
+  // }, []);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const vvalue = await AsyncStorage.getItem('value');
+        console.log('Done@@@@@@@@@@@@.', vvalue);
+
+        // return jsonValue != null ? JSON.parse(jsonValue) : null;
+      } catch (e) {
+        // read error
+      }
+    }
+    fetchData();
+  }, []);
 
   const removeHandler = Removeid => {
     let removed = data.filter(i => i.id !== Removeid);
@@ -27,9 +48,7 @@ const Arit = props => {
   };
   return (
     <View style={{flex: 1, backgroundColor: '#FFD966'}}>
-      <Pressable
-        onPress={() => navigation.goBack()}
-        style={{left: 10}}>
+      <Pressable onPress={() => navigation.goBack()} style={{left: 10}}>
         <Icon name="arrow-back" color="#000000" size={32} />
       </Pressable>
 

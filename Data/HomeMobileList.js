@@ -28,6 +28,17 @@ const HomeMobileList = [
     image: m4,
     title: 'Ultra premium | Above ₹ 40,000',
   },
+  {
+    id: '5',
+    image: m3,
+    title: 'Premium | ₹ 25,000 - ₹ 40,000 ',
+  },
+  {
+    id: '6',
+    image: m4,
+    title: 'Ultra premium | Above ₹ 40,000',
+  },
 ];
+
 
 export default HomeMobileList;

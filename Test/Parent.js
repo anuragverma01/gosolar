@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  StatusBar,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native';
+import {View, StatusBar, ScrollView} from 'react-native';
 import {useCallback} from 'react';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
 import Parse from 'parse/react-native';
@@ -28,9 +22,7 @@ import Bookimg from '../asset/image/Gif/Books.jpg';
 import Fashionimg from '../asset/image/Gif/fashion.gif';
 import Makeupimg from '../asset/image/Gif/Makeup.gif';
 import Mobileimg from '../asset/image/Gif/Mobile.gif';
-import Tvimg from '../asset/image/Gif/Tv01.gif';
 import {Image} from 'react-native-elements';
-import BookHeader from '../Data/HeaderData/BookHeader';
 const Parent = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   // console.log('Data', BookHeader)

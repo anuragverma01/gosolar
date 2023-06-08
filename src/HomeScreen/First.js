@@ -37,8 +37,10 @@ export default function First(props) {
             <Text>{item.title2}</Text> */}
               <Pressable
                 onPress={() => {
+                  
                   console.log('prees12');
-                }}>
+                }}
+                >
                 <Image
                   style={{
                     height: 150,

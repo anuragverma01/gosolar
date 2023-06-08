@@ -17,7 +17,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function BooksHeadermain(props) {
   useFocusEffect(
     useCallback(() => {
@@ -84,18 +84,23 @@ export default function BooksHeadermain(props) {
     return false;
   };
 
-  // console.log('favorite item!!!!!!!', favoriteList);
 
-  const Whistlist = item => {
+  const Whistlist = async item => {
     let filter = favoriteList?.filter(v => v.id === item?.id);
-    // console.log('filter', filter, item);
+
+    let data = [];
     if (filter?.length > 0) {
-      setFavoriteList(favoriteList?.filter(v => v.id !== item?.id));
+      data = favoriteList?.filter(v => v.id !== item?.id);
     } else {
-      setFavoriteList([item, ...favoriteList]);
+     
+      data = [item, ...favoriteList];
     }
-    // ifExists(item) ? onRemoveFavorite(item) : onFavorite(item);
+    setFavoriteList(data);
+    const jsonValue = JSON.stringify(data);
+    await AsyncStorage.setItem('value', jsonValue);
+    console.log('Data!!!!!!!!!!!',jsonValue)
   };
+
   const gettotal = () => {
     let total = 0;
     favoriteList.map(item => {
@@ -103,6 +108,8 @@ export default function BooksHeadermain(props) {
     });
     return total;
   };
+
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#FFD966'}}>
@@ -177,7 +184,9 @@ export default function BooksHeadermain(props) {
                   </View>
                 </View>
                 <TouchableOpacity
-                  onPress={() => addtocart(item)}
+                  onPress={() => {
+                    getMyObject;
+                  }}
                   style={styles.button}>
                   <Text style={styles.text}>
                     {cart?.some(v => v.id === item.id)
@@ -191,7 +200,7 @@ export default function BooksHeadermain(props) {
         />
       </View>
 
-      <View style={{alignItems: 'center' }}>
+      <View style={{alignItems: 'center'}}>
         {cart.length > 0 ? (
           <View style={styles.model}>
             <View
@@ -310,6 +319,6 @@ const styles = StyleSheet.create({
     height: 60,
     bottom: 10,
     paddingStart: 20,
-    flex:1
+    flex: 1,
   },
 });
