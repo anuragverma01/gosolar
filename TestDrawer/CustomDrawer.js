@@ -36,14 +36,8 @@ const CustomDrawer = props => {
 
   const [username, setUsername] = useState('');
 
-  // useEffect is called after the component is initially rendered and
-  // after every other render
   useEffect(() => {
-    // Since the async method Parse.User.currentAsync is needed to
-    // retrieve the current user data, you need to declare an async
-    // function here and call it afterwards
     async function getCurrentUser() {
-      // This condition ensures that username is updated only if needed
       if (username === '') {
         const currentUser = await Parse.User.currentAsync();
         if (currentUser !== null) {
@@ -56,7 +50,7 @@ const CustomDrawer = props => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      {/* <View style={{flex: 1}}> */}
+      <View style={{flex: 1}}>
         <DrawerContentScrollView
           {...props}
           contentContainerStyle={{backgroundColor: '#ffff', flex: 1}}>
@@ -77,9 +71,7 @@ const CustomDrawer = props => {
               Hi {username}
             </Text>
           </View>
-          {/* <Animated.View style={{transform: [{translateX}]}}> */}
           <DrawerItemList {...props} />
-          {/* </Animated.View> */}
         </DrawerContentScrollView>
 
         <View style={{backgroundColor: '#ffff'}}>
@@ -90,7 +82,7 @@ const CustomDrawer = props => {
             <Text style={{marginHorizontal: 10, fontSize: 18}}>Sign Out</Text>
           </TouchableOpacity>
         </View>
-      {/* </View> */}
+      </View>
     </SafeAreaView>
   );
 };

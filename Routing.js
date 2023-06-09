@@ -7,7 +7,7 @@ import LoginTestScr from './TestLogin/LoginTestSrc';
 import CreateTestSrc from './TestLogin/CreateTestSrc';
 import {UserRegistration} from './TestAuth/UserRegistration';
 import SplashScreen from './src/screen/SplashScreen';
-import {DrawerItem, createDrawerNavigator} from '@react-navigation/drawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import CustomDrawer from './TestDrawer/CustomDrawer';
 import Arit from './TestDrawer/Arit';
 import Icon from 'react-native-vector-icons/Ionicons';

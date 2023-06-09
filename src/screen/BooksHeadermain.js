@@ -2,11 +2,9 @@ import {
   View,
   Text,
   FlatList,
-  TouchableHighlight,
   Image,
   StyleSheet,
   Pressable,
-  Touchable,
   SafeAreaView,
   StatusBar,
   TouchableOpacity,
@@ -26,7 +24,6 @@ export default function BooksHeadermain(props) {
     }, []),
   );
   const {data} = props.route.params;
-  // console.log('data',props.route.params)
   const navigation = useNavigation();
   const [favoriteList, setFavoriteList] = useState([]);
   const [cart, setcart] = useState([]);
@@ -49,19 +46,25 @@ export default function BooksHeadermain(props) {
     }
     return false;
   };
-  const addtocart = item => {
+  const addtocart = async item => {
     let filter = cart?.filter(v => v.id === item?.id);
-    console.log('filter', filter, item);
+    // console.log('filter', filter, item);
+    let cartdata = [];
     if (filter?.length > 0) {
-      setcart(cart?.filter(v => v.id !== item?.id));
+      cartdata = cart?.filter(v => v.id != item?.id);
+      // setcart(cart?.filter(v => v.id != item?.id));
     } else {
-      setcart([item, ...cart]);
+      cartdata = [item, ...cart];
+      // setcart([item, ...cart]);
     }
+    setcart(cartdata);
+    const jsonValue = JSON.stringify(cartdata);
+    await AsyncStorage.setItem('cartvalue', jsonValue);
+    console.log('CartData!!!!!!!!!!!!!!', jsonValue);
     // ifExists(item) ? onRemoveFavorite(item) : onFavorite(item);
   };
 
   //===========================================================================================
-
   //===========================================================================================
 
   const onFavorite = liked => {
@@ -84,7 +87,6 @@ export default function BooksHeadermain(props) {
     return false;
   };
 
-
   const Whistlist = async item => {
     let filter = favoriteList?.filter(v => v.id === item?.id);
 
@@ -92,13 +94,12 @@ export default function BooksHeadermain(props) {
     if (filter?.length > 0) {
       data = favoriteList?.filter(v => v.id !== item?.id);
     } else {
-     
       data = [item, ...favoriteList];
     }
     setFavoriteList(data);
     const jsonValue = JSON.stringify(data);
     await AsyncStorage.setItem('value', jsonValue);
-    console.log('Data!!!!!!!!!!!',jsonValue)
+    console.log('Data!!!!!!!!!!!', jsonValue);
   };
 
   const gettotal = () => {
@@ -108,7 +109,6 @@ export default function BooksHeadermain(props) {
     });
     return total;
   };
-
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -121,7 +121,6 @@ export default function BooksHeadermain(props) {
 
         <FlatList
           data={data}
-          // ListHeaderComponent={Arit}
           keyExtractor={({id}) => id}
           renderItem={({item}) => (
             <View
@@ -185,7 +184,7 @@ export default function BooksHeadermain(props) {
                 </View>
                 <TouchableOpacity
                   onPress={() => {
-                    getMyObject;
+                    addtocart(item);
                   }}
                   style={styles.button}>
                   <Text style={styles.text}>

@@ -4,9 +4,7 @@ import {useState} from 'react';
 import {Text, TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 const LoginTestComp = ({
-  // placeholdercolor,
   placename,
-  label,
   iconname,
   password,
   label2,
@@ -15,7 +13,6 @@ const LoginTestComp = ({
   const [hidepassword, setHidePassword] = useState(password);
   return (
     <View style={{marginHorizontal: 20, marginTop: 15}}>
-      {/* <Text style={{fontSize: 15, color: '#000000'}}>{label}</Text> */}
       <TextInput
         onChangeText={onChangeText}
         mode="outlined"
@@ -28,8 +25,6 @@ const LoginTestComp = ({
           backgroundColor: '#F0F3FB',
           marginHorizontal: 10,
           paddingRight: 50,
-          // borderWidth:1,
-          // borderRadius:50
         }}
       />
 

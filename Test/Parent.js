@@ -24,10 +24,6 @@ import Makeupimg from '../asset/image/Gif/Makeup.gif';
 import Mobileimg from '../asset/image/Gif/Mobile.gif';
 import {Image} from 'react-native-elements';
 const Parent = () => {
-  const [searchQuery, setSearchQuery] = React.useState('');
-  // console.log('Data', BookHeader)
-  const onChangeSearch = query => setSearchQuery(query);
-
   const [username, setUsername] = useState('');
   const insets = useSafeAreaInsets();
   useFocusEffect(
@@ -37,12 +33,7 @@ const Parent = () => {
     }, []),
   );
 
-  // useEffect is called after the component is initially rendered and
-  // after every other render
   useEffect(() => {
-    // Since the async method Parse.User.currentAsync is needed to
-    // retrieve the current user data, you need to declare an async
-    // function here and call it afterwards
     async function getCurrentUser() {
       // This condition ensures that username is updated only if needed
       if (username === '') {

@@ -93,18 +93,6 @@ const CreateTestSrc = () => {
         </View>
       </View>
 
-      {/* <View
-        style={{
-          flexDirection: 'row',
-          backgroundColor: '#F00',
-          width:'100%'
-        }}>
-        <View style={{flexDirection:'row', flex:1}}>
-          <Text> By creating an account or signing you agree to our</Text>
-          <Text> Terms and Conditions</Text>
-        </View>
-      </View> */}
-
       <View
         style={{flexDirection: 'row', alignSelf: 'center', marginVertical: 40}}>
         <Text style={{fontSize: 14}}> Already have an account?</Text>

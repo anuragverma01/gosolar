@@ -7,29 +7,44 @@ import {
   TouchableHighlight,
   FlatList,
   StyleSheet,
+  StatusBar
 } from 'react-native';
-import React from 'react';
-
+import React, {useState, useEffect,useCallback} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import BookHeader from '../Data/HeaderData/BookHeader';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
 const Feed = props => {
   const navigation = useNavigation();
-  console.log('wishlist', props.route.params.cart);
-  const [data, setData] = React.useState(props.route.params.cart);
-  // console.log("data",setData)
+  // console.log('wishlist', props.route.params.cart);
+  const [data, setdata] = useState([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBackgroundColor('#FFD966');
+    }, []),
+  );
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const vvalue = await AsyncStorage.getItem('cartvalue');
+        setdata(vvalue ? JSON.parse(vvalue) : []);
+        console.log('@@@@@@@@@@dnksnfkfs', JSON.parse(vvalue));
+      } catch (e) {}
+    }
+    fetchData();
+  }, []);
 
   const removeHandler = Removeid => {
     let removed = data.filter(i => i.id !== Removeid);
-    setData(removed);
+    setdata(removed);
     console.log('data!!!!! REMOVED', data);
   };
   return (
     <View style={{flex: 1, backgroundColor: '#FFD966'}}>
-      <Pressable
-        onPress={() => navigation.goBack()}
-        style={{left: 10}}>
+      <Pressable onPress={() => navigation.goBack()} style={{left: 10}}>
         <Icon name="arrow-back" color="#000000" size={32} />
       </Pressable>
 

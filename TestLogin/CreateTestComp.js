@@ -4,34 +4,28 @@ import {useState} from 'react';
 import {Text, TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 const CreateTestComp = ({
-  // placeholdercolor,
   placename,
   label,
   iconname,
   password,
   label2,
-  onChangeText
+  onChangeText,
 }) => {
   const [hidepassword, setHidePassword] = useState(password);
   return (
     <View style={{marginHorizontal: 20, marginTop: 15}}>
-      {/* <Text style={{fontSize: 15, color: '#000000'}}>{label}</Text> */}
       <TextInput
-       onChangeText={onChangeText}
+        onChangeText={onChangeText}
         mode="outlined"
         placeholder={placename}
         label={label2}
         secureTextEntry={hidepassword}
         autoCorrect={false}
-        activeOutlineColor='#179aff'
+        activeOutlineColor="#179aff"
         style={{
           backgroundColor: '#F0F3FB',
           marginHorizontal: 10,
           paddingRight: 50,
-          // borderWidth:1,
-          // borderRadius:50
-          
-         
         }}
       />
 

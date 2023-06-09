@@ -1,32 +1,3 @@
-// import {View} from 'react-native';
-// import React from 'react';
-// import {SliderBox} from 'react-native-image-slider-box';
-
-// const Dot = () => {
-//   image = [
-//     'https://source.unsplash.com/1024x768/?nature',
-//     'https://source.unsplash.com/1024x768/?water',
-//     'https://source.unsplash.com/1024x768/?girl',
-//     'https://source.unsplash.com/1024x768/?tree',
-//   ]
-
-//   return (
-//     <View style={{marginVertical: 15}}>
-//       <SliderBox
-//         dotColor="#1b0482"
-//         autoplayInterval={3000}
-//         circleLoop
-//         sliderBoxHeight={200}
-//         autoplay="true"
-//         images={image}
-//       />
-//     </View>
-//   );
-
-// }
-
-// export default Dot;
-
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
@@ -45,8 +16,6 @@ export default class Dot extends Component {
         'https://images-eu.ssl-images-amazon.com/images/G/31/img23/Cons/MayART23/GW/X-GL/REC_NonPEA_PC_3000._CB590875252_.jpg',
         'https://m.media-amazon.com/images/I/61AT506RQ2L._SX3000_.jpg',
         'https://images-eu.ssl-images-amazon.com/images/G/31/img22/AmazonBrands/Events/MayART23/Furniture_Storepage_PC_1500x300.jpg',
-
-        // require('./assets/images/girl.jpg'),
       ],
     };
   }
@@ -54,7 +23,7 @@ export default class Dot extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <SliderBox 
+        <SliderBox
           inactiveDotColor="#97DEFF"
           resizeMode="stretch"
           autoplay={true}
@@ -63,9 +32,6 @@ export default class Dot extends Component {
           imageLoadingColor="transparent"
           images={this.state.images}
           sliderBoxHeight={200}
-          // onCurrentImagePressed={index =>
-          //   console.warn(`image ${index} pressed`)
-          // }
         />
       </View>
     );
@@ -74,7 +40,6 @@ export default class Dot extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     resizeMode: 'stretch',
     marginVertical: 10,
   },

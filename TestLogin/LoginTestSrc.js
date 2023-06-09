@@ -27,7 +27,6 @@ const LoginTestScr = () => {
     const usernameValue = username;
     const passwordValue = password;
     setIsLoading(true);
-    // return 0;
     // console.log('username', username, password);
 
     return await Parse.User.logIn(usernameValue, passwordValue)
@@ -59,8 +58,8 @@ const LoginTestScr = () => {
   // console.log('Visile Pressed', visible);
   return (
     <Provider>
-      <View style={{backgroundColor: '#dbdad5',flex:1}}>
-      <StatusBar barStyle="light-content" backgroundColor="#dbdad5" />
+      <View style={{backgroundColor: '#dbdad5', flex: 1}}>
+        <StatusBar barStyle="light-content" backgroundColor="#dbdad5" />
         <View
           style={{backgroundColor: '#F0F3FB', borderRadius: 32, margin: 25}}>
           <View>
@@ -75,7 +74,6 @@ const LoginTestScr = () => {
                 fontFamily: 'Laila-Bold',
                 color: '#000000',
                 bottom: 40,
-                // fontWeight: 'bold',
               }}>
               LOGIN
             </Text>
@@ -113,9 +111,11 @@ const LoginTestScr = () => {
                 marginBottom: -20,
               }}
               onPress={() => doUserLogIn()}
-              // title={isLoading ? 'Loading...' : 'Press me'}
               disabled={isLoading}>
-              {isLoading ? ( <ActivityIndicator size="small" color="white" />) : (<Text
+              {isLoading ? (
+                <ActivityIndicator size="small" color="white" />
+              ) : (
+                <Text
                   style={{
                     textAlign: 'center',
                     color: '#fff',
@@ -135,9 +135,6 @@ const LoginTestScr = () => {
             flexDirection: 'row',
             marginVertical: 30,
             alignSelf: 'center',
-            // justifyContent:'space-between',
-            // flex:1,
-            // marginHorizontal:30
           }}>
           <Button
             style={{width: 80, height: 50}}

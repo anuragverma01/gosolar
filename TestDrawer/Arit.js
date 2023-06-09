@@ -3,49 +3,46 @@ import {
   Text,
   Pressable,
   Image,
-  TouchableOpacity,
   TouchableHighlight,
   FlatList,
   StyleSheet,
+  StatusBar
 } from 'react-native';
 import {useEffect, useState} from 'react';
-
-import BookHeader from '../Data/HeaderData/BookHeader';
+import {useCallback} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Arit = props => {
   const navigation = useNavigation();
-  console.log('wishlist', props.route.params.favoriteList);
-  const [data, setData] = useState(props.route.params.favoriteList);
-  console.log('data', data);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const mobile = await AsyncStorage.getItem('value');
-  //     console.log('Data@@@@@@@@@@', mobile);
-  //   }
-  //   fetchData();
-  // }, []);
+  // console.log('wishlist', props.route.params.favoriteList);
+  // const [data, setData] = useState(props.route.params.favoriteList);
+  // console.log('data', data);
+  const [data, setdata] = useState([]);
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBackgroundColor('#FFD966');
+    }, []),
+  );
   useEffect(() => {
     async function fetchData() {
       try {
         const vvalue = await AsyncStorage.getItem('value');
-        console.log('Done@@@@@@@@@@@@.', vvalue);
-
-        // return jsonValue != null ? JSON.parse(jsonValue) : null;
-      } catch (e) {
-        // read error
-      }
+        setdata(vvalue ? JSON.parse(vvalue) : []);
+        console.log('@@@@@@@@@@dnksnfkfs', JSON.parse(vvalue));
+      } catch (e) {}
     }
     fetchData();
   }, []);
 
   const removeHandler = Removeid => {
     let removed = data.filter(i => i.id !== Removeid);
-    setData(removed);
-    console.log('data!!!!!', data);
+    setdata(removed);
   };
+  console.log('data!!!!!!!!!!!!!!', data);
+
   return (
     <View style={{flex: 1, backgroundColor: '#FFD966'}}>
       <Pressable onPress={() => navigation.goBack()} style={{left: 10}}>
@@ -54,7 +51,6 @@ const Arit = props => {
 
       <FlatList
         data={data}
-        // ListHeaderComponent={Arit}
         keyExtractor={({id}) => id}
         renderItem={({item}) => (
           <View
@@ -91,17 +87,6 @@ const Arit = props => {
                   <Text style={{color: '#000000', fontSize: 19}}>
                     {item.price}
                   </Text>
-
-                  {/* <TouchableOpacity style={styles.touchable}>
-                    <Icon
-                      name={'heart-outline'}
-                      style={styles.icon}
-                      // name="heart-outline"
-                      type="font-awesome"
-                      color="#f00"
-                      size={35}
-                    />
-                  </TouchableOpacity> */}
                 </View>
               </View>
             </View>
@@ -136,8 +121,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   icon: {
-    // position: 'absolute',
-    // alignSelf:'center',
     padding: 7,
   },
   imagestyle: {
