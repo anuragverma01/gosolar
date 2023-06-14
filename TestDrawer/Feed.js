@@ -14,7 +14,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import BookHeader from '../Data/HeaderData/BookHeader';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Feed = props => {
   const navigation = useNavigation();
   // console.log('wishlist', props.route.params.cart);
@@ -84,7 +84,7 @@ const Feed = props => {
                 </Text>
                 <Text>{item.rating}</Text>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{color: '#000000', fontSize: 19}}>
+                  <Text style={{color: '#000000', fontSize: 19}}>₹
                     {item.price}
                   </Text>
 

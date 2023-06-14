@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Image, Pressable, Text} from 'react-native';
+import {View, Image, Pressable, Text, ActivityIndicator} from 'react-native';
 import gosolar from '../asset/image/gosolar.png';
 import CreateTestComp from './CreateTestComp';
 import {useNavigation} from '@react-navigation/native';
@@ -8,22 +8,27 @@ const CreateTestSrc = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const [Loading, setLoading] = useState(false);
   const doUserRegistration = async function () {
     // Note that these values come from state variables that we've declared before
     const usernameValue = username;
     const passwordValue = password;
+    setLoading(true);
     // Since the signUp method returns a Promise, we need to call it using await
     return await Parse.User.signUp(usernameValue, passwordValue)
       .then(createdUser => {
         // Parse.User.signUp returns the already created ParseUser object if successful
         console.log('user', createdUser);
+        setLoading(false);
+
         navigation.replace('BottomScr');
         return true;
       })
       .catch(error => {
         // signUp can fail if any parameter is blank or failed an uniqueness check on the server
-        Alert.alert('Error!', error.message);
+        setLoading(false);
+    
+        alert('Error!', error.message);
         return false;
       });
   };
@@ -80,15 +85,20 @@ const CreateTestSrc = () => {
               marginTop: 40,
               marginBottom: -20,
             }}
-            onPress={() => doUserRegistration()}>
-            <Text
-              style={{
-                textAlign: 'center',
-                color: '#fff',
-                fontSize: 16,
-              }}>
-              Create account
-            </Text>
+            onPress={() => doUserRegistration()}
+            disabled={Loading}>
+            {Loading ? (
+              <ActivityIndicator size="small" color="white" />
+            ) : (
+              <Text
+                style={{
+                  textAlign: 'center',
+                  color: '#fff',
+                  fontSize: 16,
+                }}>
+                Create account
+              </Text>
+            )}
           </Pressable>
         </View>
       </View>

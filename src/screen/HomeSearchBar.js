@@ -1,9 +1,7 @@
 import {
   View,
-  Text,
   TextInput,
   StyleSheet,
-  SafeAreaView,
   Image,
 } from 'react-native';
 import React from 'react';
@@ -12,6 +10,7 @@ import Side from '../../asset/image/side.png';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
+import face from '../../asset/image/face.png'
 export default function HomeSearchBar() {
   const navigation = useNavigation();
   return (
@@ -30,8 +29,9 @@ export default function HomeSearchBar() {
 
       <TouchableOpacity
         style={{right: 10}}
-        onPress={() => navigation.openDrawer()}>
-        <Image style={{width: 40, height: 20}} source={Side} />
+        onPress={() => navigation.navigate('SideBar')}
+        >
+        <Image style={{width:50,height:50,borderRadius:100}} source={face} />
       </TouchableOpacity>
     </View>
   );

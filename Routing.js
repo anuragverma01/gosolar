@@ -15,6 +15,7 @@ import PaginationDotsExample from './Test/Dot';
 import BooksHeadermain from './src/screen/BooksHeadermain';
 import MobileHeadermain from './src/screen/MobileHeadermain';
 import Feed from './TestDrawer/Feed';
+import Sidebar from './src/screen/Sidebar';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -137,6 +138,11 @@ export default function Routing() {
         <Stack.Screen
           name="Dr"
           component={CustomDrawer}
+          options={{headerShown: false}}
+        />
+           <Stack.Screen
+          name="SideBar"
+          component={Sidebar}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

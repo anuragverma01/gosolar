@@ -15,7 +15,6 @@ import {Provider} from 'react-native-paper';
 import CreateScreenDialog from '../src/component/CreateScreenDialog';
 import Parse from 'parse/react-native';
 import {useNavigation} from '@react-navigation/native';
-import {StackActions} from '@react-navigation/native';
 const LoginTestScr = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState('');
